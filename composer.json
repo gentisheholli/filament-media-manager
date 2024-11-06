@@ -1,5 +1,5 @@
 {
-    "name": "vendor/package",
+    "name": "gentisheholli/filament-media-manager",
     "type": "library",
     "description": "Manage your media files using spatie media library with easy to use GUI for FilamentPHP",
     "keywords": [
