@@ -21,6 +21,7 @@ class CreateMediaAction
                 Forms\Components\FileUpload::make('file')
                     ->label(trans('filament-media-manager::messages.media.actions.create.form.file'))
                     ->maxSize('100000')
+                    ->multiple()
                     ->columnSpanFull()
                     ->required()
                     ->storeFiles(false),
@@ -35,20 +36,25 @@ class CreateMediaAction
                 $folder = Folder::find($folder_id);
                 if($folder){
                     if($folder->model){
-                        $folder->model->addMedia($data['file'])
-                            ->withCustomProperties([
-                                'title' => $data['title'],
-                                'description' => $data['description']
-                            ])
-                            ->toMediaCollection($folder->collection);
+                        foreach ($data['file'] as $file) {
+                            $folder->model->addMedia($file)
+                                ->multiple()
+                                ->withCustomProperties([
+                                    'description' => $data['description'],
+                                    'title' => $data['title'],
+                                ])
+                                ->toMediaCollection($folder->collection);
+                        }
                     }
                     else {
-                        $folder->addMedia($data['file'])
-                            ->withCustomProperties([
-                                'title' => $data['title'],
-                                'description' => $data['description']
-                            ])
-                            ->toMediaCollection($folder->collection);
+                        foreach ($data['file'] as $file) {
+                            $folder->addMedia($file)
+                                ->withCustomProperties([
+                                    'description' => $data['description'],
+                                    'title' => $data['title'],
+                                ])
+                                ->toMediaCollection($folder->collection);
+                        }
                     }
 
                 }
