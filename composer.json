@@ -1,5 +1,5 @@
 {
-    "name": "tomatophp/filament-media-manager",
+    "name": "vendor/package",
     "type": "library",
     "description": "Manage your media files using spatie media library with easy to use GUI for FilamentPHP",
     "keywords": [
