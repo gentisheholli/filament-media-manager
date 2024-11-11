@@ -41,7 +41,7 @@ class CreateMediaAction
                                 ->multiple()
                                 ->withCustomProperties([
                                     'description' => $data['description'],
-                                    'title' => $data['title'],
+                                    'title' => $file->getClientOriginalName(),
                                 ])
                                 ->toMediaCollection($folder->collection);
                         }
@@ -51,7 +51,7 @@ class CreateMediaAction
                             $folder->addMedia($file)
                                 ->withCustomProperties([
                                     'description' => $data['description'],
-                                    'title' => $data['title'],
+                                    'title' => $file->getClientOriginalName(),
                                 ])
                                 ->toMediaCollection($folder->collection);
                         }
