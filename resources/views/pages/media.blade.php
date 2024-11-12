@@ -261,16 +261,18 @@
         </div>
     </div>
 @endif
-
 <script>
     document.querySelectorAll('.copy-url').forEach(function(button) {
         button.addEventListener('click', function(event) {
             event.preventDefault();
             event.stopPropagation();
-
             const url = this.getAttribute('data-url');
 
-            navigator.clipboard.writeText(url).then(function() {
+            const wrappedUrl = `<div><img src="${url}"/></div>`;
+
+
+            navigator.clipboard.writeText(wrappedUrl).then(function() {
+
                 const copiedMessage = button.parentElement.nextElementSibling;
                 copiedMessage.classList.remove('hidden');
 
@@ -280,5 +282,4 @@
             });
         });
     });
-
 </script>
